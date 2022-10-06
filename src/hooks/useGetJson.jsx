@@ -2,25 +2,29 @@
 import { useEffect, useState } from 'react';
 
 
-export default function useGetJson( url ){
+export default function useGetJson( url, amount ){
 
- const [status, setStatus] = useState('init');
- const [json, setJson] = useState([]);
+    const [status, setStatus] = useState('init');
+    const [json, setJson] = useState([]);
+   
 
- 
     useEffect(() => {
         let isMounted = true;
         async function getJson(){
             try{
                 setStatus("requesting");
                 
-                let jsonResult = await (returnJson(url));
+                if (isMounted){   
+                    const jsonResult = [];
+                    for(var i=1; i<amount; i++){
+                        jsonResult.push(await returnJson(url+`${i}`))
+                
 
-                if (isMounted){    
+                    }
                     if (jsonResult){
                         setJson(jsonResult)
                         setStatus("received");
-                    
+
                     }else{
                         setStatus("error");
                     }
@@ -31,7 +35,7 @@ export default function useGetJson( url ){
         }
 
         getJson();
-
+    
         return ()=> {
             isMounted = false;
         }
@@ -44,9 +48,12 @@ export default function useGetJson( url ){
 }
 
 const returnJson = async(url) => {
+
     const result = await fetch(url);
     const jsonResult = await result.json();
     return jsonResult;
 }
+
+
 
 

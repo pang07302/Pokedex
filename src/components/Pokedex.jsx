@@ -22,7 +22,7 @@ export default function Pokedex(){
                             
                         </div>
                         <div className="row card-row">
-                            {pokemonList.map((pokemon,pokemon_index)=>{
+                            {pokemonList?.map((pokemon,pokemon_index)=>{
                                     return (pokemon_index<20)&& (
                                     
                                         <div className="col-md-3" key={pokemon_index}>
