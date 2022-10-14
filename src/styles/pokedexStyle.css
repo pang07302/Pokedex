@@ -11,7 +11,7 @@
 
 .card-row {
     margin-top: 30px;
-    height: calc(115vh - 350px);
+    /* height: calc(120vh - 350px); */
     overflow: auto;
 }
 
@@ -29,7 +29,7 @@
 
 .poke-card:hover{ 
     box-shadow: 0 2px 20px rgba(0,0,0,0.25), 0 0px 0px rgba(0,0,0,0.22);
-   -webkit-transition:  box-shadow .6s ease-in;
+  
 }
 
 .poke-nav {
@@ -80,3 +80,4 @@
 .btn-div {
     margin-top: 15px;
 }
+
